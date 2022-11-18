@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@xata.io/client": "^0.20.2",
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
   },
@@ -32,7 +33,6 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier:format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "format": "yarn lint:fix && yarn prettier:format",
-    "postinstall": "husky install",
     "prepare": "husky install"
-  } 
+  }
 }

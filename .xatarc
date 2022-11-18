@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Joseph-Maramba-Weyao-s-workspace-6bc164.eu-west-1.xata.sh/db/job-board-db",
+  "codegen": {
+    "output": "src/db/xata.ts"
+  }
+}

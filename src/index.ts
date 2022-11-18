@@ -1,14 +1,64 @@
-import express, { Express, Response } from 'express';
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import { getXataClient } from './db/xata';
 
 dotenv.config();
 
 const app: Express = express();
+const xata = getXataClient();
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5500;
 
-app.get('/', (_, res: Response) => {
-  res.status(200).json({ message: 'Hello, world!' });
+app.use(express.json());
+
+app.get('/api/jobs', async (_, res: Response) => {
+  try {
+    const jobs = await xata.db.jobs.getAll();
+    res.status(200).json(jobs);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: `${error.message}` });
+    }
+  }
+});
+
+app.post('/api/jobs', async (req: Request, res: Response) => {
+  try {
+    const job = req.body;
+
+    const createdJob = await xata.db.jobs.create(job);
+    res.status(200).json(createdJob);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).json({ message: `${error.message}` });
+    }
+  }
+  res.status(200).json({ message: 'Hello, post!' });
+});
+
+app.put('/api/jobs/:id', async (req: Request, res: Response) => {
+  try {
+    const job = req.body;
+    const { id } = req.params;
+    const updatedJob = await xata.db.jobs.update(id, job);
+    res.status(200).json(updatedJob);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(404).json({ message: `${error.message}` });
+    }
+  }
+});
+
+app.delete('/api/jobs/:id', async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const deletedJob = await xata.db.jobs.delete(id);
+    res.status(200).json(deletedJob);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(404).json({ message: `${error.message}` });
+    }
+  }
 });
 
 app.listen(PORT, () => {
