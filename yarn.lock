@@ -336,10 +336,10 @@
     "@typescript-eslint/types" "5.43.0"
     eslint-visitor-keys "^3.3.0"
 
-"@xata.io/client@^0.20.2":
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/@xata.io/client/-/client-0.20.2.tgz#64cf2fc7f252d88aae6ad1eb8f5dcfbf59cc80a0"
-  integrity sha512-GT88eGcuS/6iNI9LXrQvhj7zL0SCcGu7X5cgPAxSqX9X2YeAwTcBY+BH+KcibhCphKS/eJOxlo/jaYGRvDgTQg==
+"@xata.io/client@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@xata.io/client/-/client-0.21.0.tgz#6a8ccca46f0d6630592c3a73e21b862e4137ed23"
+  integrity sha512-0fMF66nECWg6MTstEsP9aE3GQxNYJu7gloAbwUAY58gWcCZnWjxHhueoAc+eUZxLsb7kvG3VM3M8LGnXsK+Wag==
 
 abbrev@1:
   version "1.1.1"
