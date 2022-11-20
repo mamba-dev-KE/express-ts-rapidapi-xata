@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { getXataClient } from './db/xata';
+import { getXataClient, Jobs } from './db/xata';
+import { JobResponse } from './types/types';
 
 dotenv.config();
 
@@ -11,13 +12,13 @@ const PORT = process.env.PORT || 5500;
 
 app.use(express.json());
 
-app.get('/api/jobs', async (_, res: Response) => {
+app.get('/api/jobs', async (_, res: Response<JobResponse<Jobs[]>>) => {
   try {
     const jobs = await xata.db.jobs.getAll();
-    res.status(200).json(jobs);
+    res.status(200).json({ data: jobs });
   } catch (error) {
     if (error instanceof Error) {
-      res.status(500).json({ message: `${error.message}` });
+      res.status(500).json({ error: `${error.message}` });
     }
   }
 });
