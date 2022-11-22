@@ -1,1 +1,1 @@
-export type JobResponse<T> = { error: string } | { data: T };
+export type JobResponse<T> = { error?: string; data?: T };
